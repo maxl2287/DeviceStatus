@@ -659,32 +659,13 @@ components:
           $ref: "#/components/schemas/SubscriptionCreationEventType"
 
     SubscriptionEventType:
-      type: string
-      description: |
-        roaming-status - Event triggered when the device switch from roaming ON to roaming OFF and conversely
-
-        roaming-on - Event triggered when the device switch from roaming OFF to roaming ON
-
-        roaming-off - Event triggered when the device switch from roaming ON to roaming OFF
-
-        roaming-change-country - Event triggered when the device in roaming change country code
-        
-        connectivity-data - Event triggered when the device is connected to the network for Data usage.
-        
-        connectivity-sms - Event triggered when the device is connected to the network for SMS usage
-        
-        connectivity-disconnected - Event triggered when the device is not connected.
-        
-        subscription-ends - Event triggered when the subscription is terminated
-      enum:
-        - org.camaraproject.device-status.v0.roaming-status
-        - org.camaraproject.device-status.v0.roaming-on
-        - org.camaraproject.device-status.v0.roaming-off
-        - org.camaraproject.device-status.v0.roaming-change-country
-        - org.camaraproject.device-status.v0.connectivity-data
-        - org.camaraproject.device-status.v0.connectivity-sms
-        - org.camaraproject.device-status.v0.connectivity-disconnected
-        - org.camaraproject.device-status.v0.subscription-ends
+      allOf:
+        - $ref: "#/components/schemas/SubscriptionCreationEventType"
+        - type: string
+          description: |
+            subscription-ends: Event triggered when the subscription ends.
+          enum:
+            - org.camaraproject.device-status.v0.subscription-ends
 
     SubscriptionCreationDetail:
       description: The detail of the requested event subscription
